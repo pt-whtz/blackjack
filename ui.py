@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 BUTTON_COL = "#83BD75"
 BUTTON_FONT = ("Courier", 14)
@@ -21,6 +22,7 @@ class Interface:
 
         # menu attributes
         self.logo_image = PhotoImage(file="images/logo.png")
+
         self.new_game_button = Button(self.window, width=20, font=BUTTON_FONT, bg=BUTTON_COL, text="New Game",
                                       activebackground='green', command=self.new_game)
         self.stats_button = Button(self.window, width=20, font=BUTTON_FONT, bg=BUTTON_COL, text="Statistics",
@@ -41,10 +43,12 @@ class Interface:
         self.exit_but = self.canvas.create_window(315, 280, window=self.exit_button)
 
     def show_stats(self):
-        self.main_menu_init()
+        messagebox.showwarning("Warning", "Coming soon!")
 
     def new_game(self):
         self.canvas.delete(self.logo, self.new_game_but, self.stats_but, self.exit_but)
+        # messagebox.showwarning("Warning", "Coming soon!")
 
     def game_exit(self):
-        self.window.destroy()
+        if messagebox.askyesno("Exit", "Do you want to exit?"):
+            self.window.destroy()
